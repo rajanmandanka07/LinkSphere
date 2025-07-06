@@ -9,7 +9,7 @@ function Home() {
 
   useEffect(() => {
     fetchBookmarks();
-  });
+  },[]);
 
   const fetchBookmarks = async () => {
     try {

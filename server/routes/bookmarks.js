@@ -68,4 +68,21 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Updated VPN POST route to parse client-provided HTML
+router.post('/vpn/bookmarks', async (req, res) => {
+  const { url, html } = req.body;
+  try {
+    if (!html) throw new Error('HTML content is required');
+    const $ = cheerio.load(html);
+    const title = $('title').text() || 'Untitled';
+    const thumbnail = $('meta[property="og:image"]').attr('content') || '';
+
+    const bookmark = new Bookmark({ url, title, thumbnail });
+    await bookmark.save();
+    res.status(201).json(bookmark);
+  } catch (err) {
+    res.status(400).json({ error: err.message || 'Failed to save VPN bookmark' });
+  }
+});
+
 module.exports = router;
