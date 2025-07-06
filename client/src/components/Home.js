@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddLink from './AddLink';
 import Bookmarks from './Bookmarks';
-import Toster from './Toster';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Home() {
   const [bookmarks, setBookmarks] = useState([]);
-  const [toasts, setToasts] = useState([]);
 
   useEffect(() => {
     fetchBookmarks();
@@ -32,12 +31,16 @@ function Home() {
   };
 
   const addToast = (type, message, duration) => {
-    const id = Date.now();
-    setToasts(prev => [...prev, { id, type, message, duration, visible: true }]);
-  };
-
-  const removeToast = (id) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
+    switch (type) {
+      case 'success':
+        toast.success(message, { autoClose: duration > 0 ? duration : false });
+        break;
+      case 'error':
+        toast.error(message, { autoClose: duration > 0 ? duration : false });
+        break;
+      default:
+        toast.info(message, { autoClose: duration > 0 ? duration : false });
+    }
   };
 
   return (
@@ -49,18 +52,7 @@ function Home() {
       <div className="mt-8 w-full">
         <Bookmarks bookmarks={bookmarks} onDelete={handleDelete} />
       </div>
-      {/* Toast Container */}
-      <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
-        {toasts.map(toast => (
-          <Toster
-            key={toast.id}
-            type={toast.type}
-            message={toast.message}
-            duration={toast.duration}
-            onClose={() => removeToast(toast.id)}
-          />
-        ))}
-      </div>
+      <ToastContainer position="top-right" className="mt-4" />
     </div>
   );
 }
