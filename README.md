@@ -1,6 +1,6 @@
 # LinkSphere
 
-![LinkSphere Logo](https://via.placeholder.com/150) <!-- Replace with actual logo URL if available -->
+<!-- ![LinkSphere Logo](https://via.placeholder.com/150) Replace with actual logo URL if available -->
 
 Welcome to **LinkSphere**, a web application designed to save and manage bookmarks from various video platforms, including those requiring VPN or age verification. This project includes a React-based frontend, a Node.js/Express backend, and a separate Chrome extension for extracting page data. This README provides detailed instructions for setting up, running, and contributing to the project.
 
@@ -41,3 +41,16 @@ Before setting up the project, ensure you have the following installed:
 - **Chrome Browser** (for extension testing)
 - **Git** (for cloning the repository)
 - **VPN Client** (optional, for testing VPN sites)
+
+
+### Instructions
+- Copy the text above.
+- Paste it into your existing `README.md` file, appending it right after the "Frontend Setup" heading (which should already be there from your earlier paste).
+- Customize the placeholders:
+  - Replace `yourusername` with your GitHub username and update the repo URL.
+  - Replace `172.18.XX.XX` with your actual WSL IP.
+- Save, commit, and push as before:
+  ```bash
+  git add README.md
+  git commit -m "Add Frontend Setup to README"
+  git push origin main
