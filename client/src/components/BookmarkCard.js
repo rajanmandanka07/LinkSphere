@@ -37,7 +37,7 @@ const BookmarkCard = ({ bookmark, onDelete }) => {
       className="bg-white rounded-xl shadow-lg transition-all duration-300 flex flex-col hover:shadow-xl"
       style={{ width: `${cardWidth}px` }}
     >
-      <div className="relative w-full bg-gray-100 border border-gray-200 rounded-t-xl overflow-hidden">
+      <div className="relative w-full bg-gray-100 border border-gray-200 rounded-t-xl overflow-hidden group">
         {isLoading && (
           <div
             style={{
@@ -54,10 +54,10 @@ const BookmarkCard = ({ bookmark, onDelete }) => {
         <img
           src={bookmark.thumbnail}
           alt={bookmark.title}
-          className={`w-full object-contain ${isLoading ? 'invisible' : ''}`}
+          className={`w-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-105 ${isLoading ? 'invisible' : ''}`}
           onLoad={handleImageLoad}
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/200x120';
+            e.target.src = 'https://placehold.co/400x200';
             setCardWidth(300);
             setIsLoading(false);
           }}

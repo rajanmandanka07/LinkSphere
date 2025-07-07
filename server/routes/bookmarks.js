@@ -75,8 +75,7 @@ router.post('/vpn/bookmarks', async (req, res) => {
     if (!html) throw new Error('HTML content is required');
     const $ = cheerio.load(html);
     const title = $('title').text() || 'Untitled';
-    const thumbnail = $('meta[property="og:image"]').attr('content') || '';
-
+    const thumbnail = $('meta[property="og:image"]').attr('content') || 'https://placehold.co/400x200';
     const bookmark = new Bookmark({ url, title, thumbnail });
     await bookmark.save();
     res.status(201).json(bookmark);

@@ -9,7 +9,7 @@ function Bookmarks({ bookmarks, onDelete }) {
                     No bookmarks yet. Add one above.
                 </p>
             ) : (
-                <div className="flex justify-between flex-wrap">
+                <div className="flex m-5 flex-wrap">
                     {bookmarks.map(bookmark => (
                         <div key={bookmark._id} className="m-2">
                             <BookmarkCard bookmark={bookmark} onDelete={onDelete} />
